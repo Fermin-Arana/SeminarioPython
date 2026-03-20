@@ -12,18 +12,20 @@ words_played = []
 
 while True:
     print("\n--- NUEVA PARTIDA ---")
-    print("Categorías disponibles:")
+    print("Categorias disponibles:")
     options = list(categories.keys())
     for i in range(len(options)):
         print(f"{i + 1}. {options[i]}")
 
-    choice = int(input("Elegí una categoría (número): ")) - 1
+    choice = int(input("Elegí una categoria (numero): ")) - 1
+    while (choice < 1 or choice > len(options)):
+        choice = int(input("Elegi una categoria dentro del rango: ")) - 1
     categoria_actual = options[choice]
     
     posibility = [p for p in categories[categoria_actual] if p not in words_played]
     
     if not posibility:
-        print(f"Ya no quedan palabras en {categoria_actual}. ¡Elegí otra!")
+        print(f"Ya no quedan palabras en {categoria_actual}. Elegi otra")
         continue
 
     word = random.sample(posibility, 1)[0]
@@ -32,7 +34,7 @@ while True:
     guessed = []
     attempts = 6
 
-    print(f"¡Bienvenido al Ahorcado! (Categoría: {categoria_actual})")
+    print(f"Bienvenido al Ahorcado (Categoría: {categoria_actual})")
     print()
 
     while attempts > 0:
@@ -52,7 +54,7 @@ while True:
         print(f"Intentos restantes: {attempts}")
         print(f"Letras usadas: {', '.join(guessed)}")
 
-        letter = input("Ingresá una letra: ").lower()
+        letter = input("Ingresa una letra: ").lower()
         while (len(letter) > 1 and (letter < "a" or letter > "z")):
             letter = input("Entrada no valida, pone UNA letra: ").lower()
 
@@ -60,21 +62,21 @@ while True:
             print("Ya usaste esa letra.")
         elif letter in word:
             guessed.append(letter)
-            print("¡Bien! Esa letra está en la palabra.")
+            print("Bien. Esa letra esta en la palabra.")
         else:
             guessed.append(letter)
             attempts -= 1
             score -= 1
-            print("Esa letra no está en la palabra.")
+            print("Esa letra no esta en la palabra.")
         print()
 
     else:
         score = 0
-        print(f"¡Perdiste! La palabra era: {word}")
+        print(f"Perdiste, La palabra era: {word}")
 
     print(f"Tu puntuacion actual es de {score}")
     
-    if input("¿Querés seguir jugando? (s/n): ").lower() != "s":
+    if input("Queres seguir jugando? (s/n): ").lower() != "s":
         break
 
 print("Gracias por jugar.")
