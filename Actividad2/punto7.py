@@ -1,7 +1,5 @@
 import random
 
-
-
 def validation(friends):
     if("," not in friends):
         print("No ingresaste los nombres de la forma que se te pidio")
