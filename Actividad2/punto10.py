@@ -59,21 +59,29 @@ class Persona:
         self.points_best_round = 0
         self.prom = 0.0
         self.cant_rounds = 0
+
     def get_name(self):
         return self.name
+    
     def get_points(self):
         return self.points
+    
     def sum_rounds(self):
         self.cant_rounds+=1
+
     def sum_points(self,new_points):
         self.points += new_points
+
     def sum_win_rounds (self, win_round):
         self.win_rounds.append(win_round)
+
     def set_best_round(self, points_best):
         if(self.points_best_round < points_best):
             self.points_best_round = points_best
+
     def calculate_prom(self):
         self.prom = self.points / self.cant_rounds
+
     def __str__ (self):
         return f"Cocinero: {self.name}, Puntaje: {self.points}, Rondas ganadas: {self.win_rounds}, Mejor ronda: {self.points_best_round}, promedio: {self.prom}"
 
@@ -109,7 +117,6 @@ class Torneo:
                 print(f"{i+1}, nombre {name}: {points} pts")
         return participants
                 
-
 my_tournament = Torneo(rounds)
 participants = my_tournament.mostrar_resultado()
 participants_list = list(participants.values())
